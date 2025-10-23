@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Dimpho</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #5a3e36;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hearts-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+            }
+            50% { 
+                transform: translateY(-20px) rotate(10deg); 
+            }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            color: #d63384;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #8b5a5a;
+            animation: fadeIn 3s ease-out;
+        }
+
+        .names {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #c44569;
+            margin-top: 2rem;
+            animation: fadeIn 4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .love-message {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.8);
+            text-align: center;
+        }
+
+        .message-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .message-box::before {
+            content: "“";
+            font-size: 120px;
+            color: #ff9a9e;
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+
+        .message-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #5a3e36;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #d63384;
+            text-align: right;
+        }
+
+        .our-story {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #d63384;
+            margin-bottom: 3rem;
+        }
+
+        .story-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .story-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ff9a9e 0%, #fad0c4 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 0.3em;
+            background-position: 0 88%;
+            padding: 0.1em 0;
+        }
+
+        .memories {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .memory-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .memory-img {
+            height: 200px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .memory-content {
+            padding: 20px;
+        }
+
+        .memory-title {
+            font-size: 1.5rem;
+            color: #d63384;
+            margin-bottom: 10px;
+        }
+
+        .reasons {
+            padding: 100px 0;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .reasons-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .reason-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .reason-item:hover {
+            transform: translateX(10px);
+        }
+
+        .reason-icon {
+            font-size: 2.5rem;
+            color: #d63384;
+            margin-right: 20px;
+            min-width: 60px;
+        }
+
+        .reason-text {
+            font-size: 1.2rem;
+        }
+
+        .countdown {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: white;
+        }
+
+        .countdown-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 120px;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .countdown-label {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            background: #5a3e36;
+            color: white;
+        }
+
+        .footer-heart {
+            color: #ff9a9e;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { 
+                transform: scale(1); 
+            }
+            50% { 
+                transform: scale(1.1); 
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .countdown-container {
+                flex-wrap: wrap;
+            }
+            
+            .memory-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="hearts-bg" id="heartsContainer"></div>
+        <div class="container">
+            <h1>My Dearest Dimpho</h1>
+            <p class="subtitle">Every beat of my heart whispers your name</p>
+            <div class="names">
+                <p>With all my love,</p>
+                <p>Kholofelo</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="love-message">
+        <div class="container">
+            <div class="message-box">
+                <p class="message-text">
+                    My beautiful Dimpho,<br><br>
+                    
+                    In just two short months, you've managed to do what I thought was impossible - you've completely captured my heart. From our very first conversation, I knew there was something special about you, something that drew me in and made me want to know every part of you.<br><br>
+                    
+                    Your laughter is like music that brightens even the darkest days, and your smile could light up the entire city. The way your eyes sparkle when you talk about things you're passionate about makes me fall for you all over again. You're not just my girlfriend - you're my best friend, my confidant, and my greatest adventure. O brayaka! Ong Hafisa Thatha.<br>
+                    
+                    I want you to know that you are truly a blessing from God in my life. Motho waka - my person - you've shown me what real love feels like, and wayitsi ko vrostana blind. I'm completely and utterly captivated by everything you are.<br><br>
+                    
+                    These past two months have been the most beautiful beginning to what I know will be an incredible journey. I can't wait to create countless more memories with you, to grow with you, and to love you more with each passing day.<br><br>
+                    
+                    You are my today and all of my tomorrows. I could go on forever about how much you mean to me, but I'll end with this - I love you more than words can express, and I'm so grateful to have you in my life.
+                </p>
+                <p class="signature">Forever yours, Kholofelo</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="our-story">
+        <div class="container">
+            <h2 class="section-title">Our Beautiful Story</h2>
+            <div class="story-container">
+                <p class="story-text">
+                    In just <span class="highlight">2 months</span>, you've become the most important person in my life. Every moment with you feels like a precious gift. Feels like I've known you forever.
+                </p>
+                <p class="story-text">
+                    Your <span class="highlight">bubbly personality</span> and infectious energy light up every room you enter. You're not just my girlfriend - you're my <span class="highlight">blessing from God</span>, motho waka.
+                </p>
+                <p class="story-text">
+                    And I'll say it again - <span class="highlight">ko vrostana blind</span>. You've completely stolen my heart in the most beautiful way possible.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="memories">
+        <div class="container">
+            <h2 class="section-title">Our Beautiful Journey</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <div class="memory-img">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="memory-content">
+                        <h3 class="memory-title">Our Beginning</h3>
+                        <p>These first 2 months have been filled with laughter, deep conversations, and moments I'll cherish forever.</p>
+                    </div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-img">
+                        <i class="fas fa-laugh-beam"></i>
+                    </div>
+                    <div class="memory-content">
+                        <h3 class="memory-title">Your Beautiful Spirit</h3>
+                        <p>Your extroverted nature and ability to make everyone feel comfortable is one of your most beautiful qualities.</p>
+                    </div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-img">
+                        <i class="fas fa-pray"></i>
+                    </div>
+                    <div class="memory-content">
+                        <h3 class="memory-title">My Answered Prayer</h3>
+                        <p>You are the answer to prayers I didn't even know I was making. My blessing, my gift.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reasons">
+        <div class="container">
+            <h2 class="section-title">Why I Love You</h2>
+            <div class="reasons-container">
+                <div class="reason-item">
+                    <div class="reason-icon">
+                        <i class="fas fa-laugh-beam"></i>
+                    </div>
+                    <div class="reason-text">
+                        The way your laughter fills a room and makes everything better
+                    </div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="reason-text">
+                        How you make everyone around you feel seen and valued
+                    </div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-icon">
+                        <i class="fas fa-praying-hands"></i>
+                    </div>
+                    <div class="reason-text">
+                        You're the blessing I thank God for every single day
+                    </div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-icon">
+                        <i class="fas fa-heart-circle-bolt"></i>
+                    </div>
+                    <div class="reason-text">
+                        The things you do that show how deeply you care and love those around you. You're truly special.
+                    </div>
+                </div>
+                <div class="reason-item">
+                    <div class="reason-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="reason-text">
+                        The way you make ordinary moments feel magical. The way you look at me.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="countdown">
+        <div class="container">
+            <h2 class="countdown-title">Counting Our Blessings</h2>
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days-together">60</div>
+                    <div class="countdown-label">Days Together</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="next-anniversary">0</div>
+                    <div class="countdown-label">Days Until Anniversary</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours-smiled">1440</div>
+                    <div class="countdown-label">Hours Smiled</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="blessings">∞</div>
+                    <div class="countdown-label">Blessings Counted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Made with <span class="footer-heart"><i class="fas fa-heart"></i></span> for Dimpho Mahlagare</p>
+            <p>My blessing from God • Motho waka • Bubs Waka</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create floating hearts background
+        function createHearts() {
+            const heartsContainer = document.getElementById('heartsContainer');
+            const heartCount = 50;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                
+                const size = Math.random() * 30 + 10;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 5;
+                
+                heart.style.fontSize = size + 'px';
+                heart.style.left = left + '%';
+                heart.style.top = top + '%';
+                heart.style.animationDelay = delay + 's';
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Countdown to next anniversary
+        function updateAnniversaryCountdown() {
+            const now = new Date();
+            const currentYear = now.getFullYear();
+            let anniversary = new Date(currentYear, 10, 19);
+            
+            if (now > anniversary) {
+                anniversary = new Date(currentYear + 1, 10, 19);
+            }
+            
+            const timeDiff = anniversary - now;
+            const daysUntil = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('next-anniversary').innerText = daysUntil;
+        }
+        
+        // Initialize everything when page loads
+        window.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            updateAnniversaryCountdown();
+            
+            setInterval(updateAnniversaryCountdown, 24 * 60 * 60 * 1000);
+        });
+    </script>
+</body>
+</html>
