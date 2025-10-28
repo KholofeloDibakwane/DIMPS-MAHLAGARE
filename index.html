@@ -504,48 +504,93 @@
         function createHearts() {
             const heartsContainer = document.getElementById('heartsContainer');
             const heartCount = 50;
-            
+
             for (let i = 0; i < heartCount; i++) {
                 const heart = document.createElement('div');
                 heart.classList.add('heart');
                 heart.innerHTML = '<i class="fas fa-heart"></i>';
-                
+
                 const size = Math.random() * 30 + 10;
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
                 const delay = Math.random() * 5;
-                
+
                 heart.style.fontSize = size + 'px';
                 heart.style.left = left + '%';
                 heart.style.top = top + '%';
                 heart.style.animationDelay = delay + 's';
-                
+
                 heartsContainer.appendChild(heart);
             }
         }
-        
-        // Countdown to next anniversary
-        function updateAnniversaryCountdown() {
+
+        // Returns the most recent Aug 19 on or before today (used as the dating start)
+        function getDatingStart() {
             const now = new Date();
-            const currentYear = now.getFullYear();
-            let anniversary = new Date(currentYear, 10, 19);
-            
-            if (now > anniversary) {
-                anniversary = new Date(currentYear + 1, 10, 19);
+            const year = now.getFullYear();
+            let start = new Date(year, 7, 19, 0, 0, 0); // monthIndex 7 = August
+            if (now < start) {
+                start = new Date(year - 1, 7, 19, 0, 0, 0);
             }
-            
-            const timeDiff = anniversary - now;
-            const daysUntil = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-            
-            document.getElementById('next-anniversary').innerText = daysUntil;
+            return start;
         }
-        
+
+        // Compute days together (inclusive of start day)
+        function computeDaysTogether(start, now) {
+            const msPerDay = 1000 * 60 * 60 * 24;
+            const diff = now - start;
+            return Math.floor(diff / msPerDay) + 1; // include the starting day as day 1
+        }
+
+        // Compute hours smiled (total full hours since start)
+        function computeHoursSmiled(start, now) {
+            const msPerHour = 1000 * 60 * 60;
+            const diff = now - start;
+            return Math.floor(diff / msPerHour);
+        }
+
+        // Countdown to next anniversary (Nov 19)
+        function computeDaysUntilAnniversary(now) {
+            const currentYear = now.getFullYear();
+            let anniversary = new Date(currentYear, 10, 19, 0, 0, 0); // monthIndex 10 = November
+            if (now > anniversary) {
+                anniversary = new Date(currentYear + 1, 10, 19, 0, 0, 0);
+            }
+            const msPerDay = 1000 * 60 * 60 * 24;
+            const timeDiff = anniversary - now;
+            return Math.ceil(timeDiff / msPerDay);
+        }
+
+        // Format numbers with commas
+        function fmt(n) {
+            return n.toLocaleString();
+        }
+
+        // Update the DOM values
+        function updateCounters() {
+            const now = new Date();
+            const start = getDatingStart();
+
+            const daysTogether = computeDaysTogether(start, now);
+            const hoursSmiled = computeHoursSmiled(start, now);
+            const daysUntil = computeDaysUntilAnniversary(now);
+
+            const daysEl = document.getElementById('days-together');
+            const hoursEl = document.getElementById('hours-smiled');
+            const annEl = document.getElementById('next-anniversary');
+
+            if (daysEl) daysEl.innerText = fmt(daysTogether);
+            if (hoursEl) hoursEl.innerText = fmt(hoursSmiled);
+            if (annEl) annEl.innerText = fmt(daysUntil);
+        }
+
         // Initialize everything when page loads
         window.addEventListener('DOMContentLoaded', function() {
             createHearts();
-            updateAnniversaryCountdown();
-            
-            setInterval(updateAnniversaryCountdown, 24 * 60 * 60 * 1000);
+            updateCounters();
+
+            // Update frequently: every second so hours update when they change and the UI feels live
+            setInterval(updateCounters, 1000);
         });
     </script>
 </body>
