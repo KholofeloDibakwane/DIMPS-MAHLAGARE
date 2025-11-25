@@ -114,7 +114,7 @@
         }
 
         .message-box::before {
-            content: "“";
+            content: """;
             font-size: 120px;
             color: #ff9a9e;
             position: absolute;
@@ -549,13 +549,17 @@
             return Math.floor(diff / msPerHour);
         }
 
-        // Countdown to next anniversary (Nov 19)
+        // Countdown to next anniversary (19th of every month)
         function computeDaysUntilAnniversary(now) {
             const currentYear = now.getFullYear();
-            let anniversary = new Date(currentYear, 10, 19, 0, 0, 0); // monthIndex 10 = November
+            const currentMonth = now.getMonth();
+            let anniversary = new Date(currentYear, currentMonth, 19, 0, 0, 0);
+            
+            // If the 19th of this month has already passed, move to the 19th of next month
             if (now > anniversary) {
-                anniversary = new Date(currentYear + 1, 10, 19, 0, 0, 0);
+                anniversary = new Date(currentYear, currentMonth + 1, 19, 0, 0, 0);
             }
+            
             const msPerDay = 1000 * 60 * 60 * 24;
             const timeDiff = anniversary - now;
             return Math.ceil(timeDiff / msPerDay);
@@ -595,3 +599,4 @@
     </script>
 </body>
 </html>
+
